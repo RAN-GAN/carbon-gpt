@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatGPT Carbon Footprint Estimator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="hero-icon">🌍</div>
+        <h1>ChatGPT Carbon Footprint Estimator</h1>
+        <p class="subtitle">
+          See the real-world impact of your AI conversations
+        </p>
+      </section>
+      <section id="instructions" class="card instructions-card">
+        <h2>
+          <span class="step-icon">📥</span> How to Export Your ChatGPT Data
+        </h2>
+        <ol class="steps">
+          <li>
+            <span class="step-icon">1️⃣</span> Go to
+            <a href="https://chat.openai.com/" target="_blank" rel="noopener"
+              >chat.openai.com</a
+            >
+            and log in.
+          </li>
+          <li>
+            <span class="step-icon">2️⃣</span> Click on your <b>Profile</b> →
+            <b>Settings</b>.
+          </li>
+          <li>
+            <span class="step-icon">3️⃣</span> Go to <b>Data Controls</b> →
+            <b>Export Data</b>.
+          </li>
+          <li>
+            <span class="step-icon">4️⃣</span> Click <b>Export</b> and wait for
+            the email from OpenAI.
+          </li>
+          <li>
+            <span class="step-icon">5️⃣</span> Download the ZIP, extract it, and
+            upload <code>conversations.json</code> below.
+          </li>
+        </ol>
+      </section>
+      <div class="upload-section card">
+        <label for="fileInput" class="upload-label">
+          <span class="upload-icon">⬆️</span> Upload
+          <code>conversations.json</code>
+        </label>
+        <input type="file" id="fileInput" accept=".json" />
+        <div id="loader" class="loader" hidden>
+          <div class="spinner"></div>
+          <span>Processing your data...</span>
+        </div>
+      </div>
+      <section id="report" hidden>
+        <div class="card report-card">
+          <h2 class="report-title">🌱 Estimated Carbon Report</h2>
+          <pre id="summary"></pre>
+          <div id="metrics" class="metrics-grid"></div>
+          <pre id="extra"></pre>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

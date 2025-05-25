@@ -1,0 +1,226 @@
+body {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e3f0ff 0%, #f5f7fa 100%);
+  color: #222;
+  margin: 0;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-top: 1.5rem;
+}
+.hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  animation: pop 1.2s cubic-bezier(0.23, 1.01, 0.32, 1.01);
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.hero h1 {
+  font-weight: 800;
+  color: #1b3a5c;
+  font-size: 2.3rem;
+  margin-bottom: 0.2em;
+}
+.subtitle {
+  color: #2a5d9f;
+  font-size: 1.15rem;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 32px rgba(42, 93, 159, 0.13);
+  padding: 1.7em 2.2em;
+  margin-bottom: 2.2em;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 10px 40px rgba(42, 93, 159, 0.18);
+}
+.instructions-card {
+  border-left: 6px solid #2a5d9f;
+  background: #f3f8ff;
+}
+
+.steps {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0 1.2em;
+}
+.step-icon {
+  font-size: 1.1em;
+  margin-right: 0.4em;
+}
+
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 2em;
+}
+.upload-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1b3a5c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.2em;
+}
+.upload-icon {
+  font-size: 1.3em;
+}
+input[type="file"] {
+  font-size: 1rem;
+  border: 1px solid #c7d7ef;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  background: #f7fbff;
+  color: #1b3a5c;
+  margin-bottom: 0.5em;
+}
+input[type="file"]:focus {
+  outline: 2px solid #2a5d9f;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: 0.5em;
+  color: #2a5d9f;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #b3d1f7;
+  border-top: 3px solid #2a5d9f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#report {
+  margin-top: 2em;
+}
+.report-card {
+  border-top: 5px solid #2a5d9f;
+  background: linear-gradient(120deg, #f0f6ff 60%, #e8f0fe 100%);
+}
+.report-title {
+  font-size: 1.4rem;
+  color: #1b3a5c;
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1em 1.5em;
+  margin-bottom: 1.2em;
+  margin-top: 1.2em;
+}
+.metrics-grid .metric {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(42, 93, 159, 0.07);
+  padding: 1em 1.1em 0.8em 1.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.05em;
+  min-width: 0;
+  min-height: 70px;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+.metrics-grid .metric .metric-icon {
+  font-size: 1.3em;
+  margin-bottom: 0.2em;
+}
+.metrics-grid .metric .metric-label {
+  color: #2a5d9f;
+  font-weight: 600;
+  margin-bottom: 0.1em;
+}
+.metrics-grid .metric .metric-value {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #1b3a5c;
+}
+
+pre {
+  background: #f0f6ff;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin-bottom: 1em;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  margin-top: 3em;
+  font-size: 1em;
+  padding-bottom: 1.5em;
+}
+.footer-heart {
+  color: #e25555;
+  font-size: 1.1em;
+}
+footer a {
+  color: #2a5d9f;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1.2rem 0.2rem 1.5rem 0.2rem;
+  }
+  .card {
+    padding: 1.1em 0.7em;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+}
