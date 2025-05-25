@@ -6,7 +6,6 @@ This web app estimates the carbon footprint of your ChatGPT usage by analyzing y
 
 ---
 
-
 ## 📦 How to Use
 
 1. **Export your ChatGPT data:**
@@ -21,8 +20,8 @@ This web app estimates the carbon footprint of your ChatGPT usage by analyzing y
 
 ---
 
-
 ## 📊 Data & Methodology
+
 - **Token count** is estimated from message length (approx. 4 chars per token).
 - **CO₂ calculation** uses average energy and emissions factors for AI inference.
 - **Equivalents** are based on public data (Our World in Data, EPA, etc.).
@@ -34,5 +33,3 @@ This web app estimates the carbon footprint of your ChatGPT usage by analyzing y
 - Data sources: [Our World in Data](https://ourworldindata.org/), [EPA](https://www.epa.gov/).
 
 ---
-
-

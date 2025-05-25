@@ -20,6 +20,11 @@ fileInput.addEventListener("change", async (event) => {
 
     const result = await estimateCarbon(data);
 
+    // Water usage estimate: Google/Stanford/Anthropic/Meta studies suggest 0.5L-5L per 5-10 prompts for GPT-3/4. We'll use 0.5L per 10 prompts as a conservative estimate.
+    // See: https://arxiv.org/abs/2304.03271, https://www.technologyreview.com/2023/04/10/1071132/ai-chatgpt-water-use/
+    const waterPerPrompt = 0.05; // liters per prompt (conservative, 50ml)
+    const waterLiters = Math.round(result.totalMessages * waterPerPrompt);
+
     summaryEl.textContent = `
 🧾 Total tokens: ${result.totalTokens.toLocaleString()}
 
@@ -30,9 +35,11 @@ fileInput.addEventListener("change", async (event) => {
 💬 Total messages: ${result.totalMessages.toLocaleString()}
 
 🌍 Estimated CO₂ Emissions: ${result.totalCO2} kg
+
+💧 Estimated Water Usage: ${waterLiters.toLocaleString()} liters
 `.trim();
 
-    metricsEl.innerHTML = generateEquivalentsGrid(result.totalCO2);
+    metricsEl.innerHTML = generateEquivalentsGrid(result.totalCO2, waterLiters);
 
     extraEl.textContent = generateExtraMetrics(result);
 
@@ -61,7 +68,7 @@ function estimateCarbon(data) {
         const msg = node.message;
         if (msg && msg.author?.role === "user" && msg.content?.parts) {
           const text = msg.content.parts.join(" ");
-          const tokens = Math.ceil(text.length / 4); 
+          const tokens = Math.ceil(text.length / 4);
           totalTokens += tokens;
           totalMessages++;
 
@@ -91,7 +98,7 @@ function estimateCarbon(data) {
   });
 }
 
-function generateEquivalentsGrid(co2) {
+function generateEquivalentsGrid(co2, waterLiters) {
   co2 = parseFloat(co2);
   if (isNaN(co2) || co2 <= 0)
     return '<div class="metric">No meaningful CO₂ emissions detected.</div>';
@@ -104,6 +111,9 @@ function generateEquivalentsGrid(co2) {
   const ledHours = (co2 / (0.233 * 0.01)).toFixed(0);
   const flightHours = (co2 / 90).toFixed(2);
   const bags = (co2 / 0.03).toFixed(0);
+  const water = waterLiters
+    ? `<div class="metric"><span class="metric-icon">💧</span><span class="metric-label">Water used (est.)</span><span class="metric-value">${waterLiters.toLocaleString()} L</span></div>`
+    : "";
 
   return `
     <div class="metric"><span class="metric-icon">🚗</span><span class="metric-label">Car travel</span><span class="metric-value">${kmDriven} km</span></div>
@@ -116,6 +126,7 @@ function generateEquivalentsGrid(co2) {
     <div class="metric"><span class="metric-icon">💡</span><span class="metric-label">LED bulb (10W) hours</span><span class="metric-value">${ledHours}</span></div>
     <div class="metric"><span class="metric-icon">✈️</span><span class="metric-label">Flight hours</span><span class="metric-value">${flightHours}</span></div>
     <div class="metric"><span class="metric-icon">🥤</span><span class="metric-label">Plastic bags produced</span><span class="metric-value">${bags}</span></div>
+    ${water}
   `;
 }
 
