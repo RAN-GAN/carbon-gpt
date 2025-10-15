@@ -1,0 +1,40 @@
+name: Github CICD
+
+on: 
+    push:
+        branches:
+            - main
+
+jobs:
+    validates:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Validate HTML file
+              run: |
+                  set -e
+                  echo "Installing Node.js..."
+                  # Use setup-node action to ensure node is available
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+
+            - name: Install htmlhint
+              run: |
+                npm install -g htmlhint
+
+            - name: Run htmlhint
+              run: |
+                # run htmlhint on all HTML files in the repo
+                files=$(git ls-files '*.html' || true)
+                if [ -z "$files" ]; then
+                  echo "No HTML files found to validate."
+                else
+                  echo "Validating HTML files: $files"
+                  htmlhint $files
+                fi
+
